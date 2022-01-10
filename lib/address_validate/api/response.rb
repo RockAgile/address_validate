@@ -1,9 +1,10 @@
 module AddressValidate
   module API
     class Response
-      attr_reader :response_body
+      attr_reader :response_body, :raw_response_body
 
       def initialize(response_body)
+        @raw_response_body = response_body
         @response_body = Ox.parse(response_body)
       end
 
@@ -21,6 +22,14 @@ module AddressValidate
 
       def warning
         get_field('ReturnText')
+      end
+
+      def to_xml
+        Ox.dump(response_body)
+      end
+
+      def to_h
+        Hash.from_xml(Ox.dump(response_body))
       end
 
     private

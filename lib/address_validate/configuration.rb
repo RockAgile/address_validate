@@ -1,13 +1,13 @@
 module AddressValidate
   module Configuration
     API_URLS = {
-      test: 'http://production.shippingapis.com/ShippingAPITest.dll',
-      production: 'http://production.shippingapis.com/ShippingAPI.dll'
+      test: 'https://production.shippingapis.com/ShippingAPITest.dll',
+      production: 'https://production.shippingapis.com/ShippingAPI.dll',
     }
 
     attr_accessor :environment, :username, :password,
       :firm_name, :street_address, :apartment_number,
-      :city, :state, :zip_5, :zip_4
+      :city, :state, :zip_5, :zip_4, :business
 
     def configure
       yield self
@@ -30,6 +30,7 @@ module AddressValidate
       self.state            = :state
       self.zip_5            = :zip_5
       self.zip_4            = :zip_4
+      self.business         = :commercial
     end
   end
 end

@@ -14,6 +14,7 @@ module AddressValidate
       def build_xml
         request_xml = build_node('AddressValidateRequest', nil,
                         { 'USERID' => AddressValidate.username })
+        request_xml << build_node('Revision', "1")
         request_xml << build_address
         Ox.dump(request_xml)
       end
